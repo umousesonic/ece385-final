@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<preferences>
+ <debug showDebugMenu="0" />
+ <systemtable filter="All Interfaces">
+  <columns>
+   <connections preferredWidth="175" />
+   <irq preferredWidth="34" />
+  </columns>
+ </systemtable>
+ <library
+   expandedCategories="Library/Basic Functions,Library/Memory Interfaces and Controllers/SDRAM,Library/Memory Interfaces and Controllers,Project,Library" />
+ <window width="2582" height="1402" x="-11" y="-11" />
+</preferences>
