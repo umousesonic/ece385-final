@@ -1,5 +1,5 @@
 Flow report for final-project
-Tue Nov 08 15:48:28 2022
+Wed Nov 16 03:01:48 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,18 +40,18 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Tue Nov 08 15:48:28 2022       ;
+; Flow Status                        ; Successful - Wed Nov 16 03:01:48 2022       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; final-project                               ;
 ; Top-level Entity Name              ; top                                         ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M50DAF484C7G                              ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 3,851 / 49,760 ( 8 % )                      ;
-;     Total combinational functions  ; 3,254 / 49,760 ( 7 % )                      ;
-;     Dedicated logic registers      ; 2,417 / 49,760 ( 5 % )                      ;
-; Total registers                    ; 2486                                        ;
-; Total pins                         ; 141 / 360 ( 39 % )                          ;
+; Total logic elements               ; 4,716 / 49,760 ( 9 % )                      ;
+;     Total combinational functions  ; 4,114 / 49,760 ( 8 % )                      ;
+;     Dedicated logic registers      ; 2,453 / 49,760 ( 5 % )                      ;
+; Total registers                    ; 2522                                        ;
+; Total pins                         ; 177 / 360 ( 49 % )                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 11,392 / 1,677,312 ( < 1 % )                ;
 ; Embedded Multiplier 9-bit elements ; 0 / 288 ( 0 % )                             ;
@@ -66,42 +66,45 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 11/08/2022 15:47:06 ;
+; Start date & time ; 11/16/2022 03:00:19 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; final-project       ;
 +-------------------+---------------------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                                                           ;
-+-------------------------------------+-------------------------------------------------------+---------------+-------------+----------------+
-; Assignment Name                     ; Value                                                 ; Default Value ; Entity Name ; Section Id     ;
-+-------------------------------------+-------------------------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 48599032571974.166794402609316                        ; --            ; --          ; --             ;
-; EDA_OUTPUT_DATA_FORMAT              ; Systemverilog Hdl                                     ; --            ; --          ; eda_simulation ;
-; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (SystemVerilog)                       ; <None>        ; --          ; --             ;
-; EDA_TIME_SCALE                      ; 1 ps                                                  ; --            ; --          ; eda_simulation ;
-; MAX_CORE_JUNCTION_TEMP              ; 85                                                    ; --            ; --          ; --             ;
-; MIN_CORE_JUNCTION_TEMP              ; 0                                                     ; --            ; --          ; --             ;
-; MISC_FILE                           ; soc/synthesis/../soc.cmp                              ; --            ; --          ; --             ;
-; MISC_FILE                           ; soc/synthesis/../../soc.qsys                          ; --            ; --          ; --             ;
-; OUTPUT_IO_TIMING_FAR_END_VMEAS      ; Half Signal Swing                                     ; --            ; --          ; --             ;
-; OUTPUT_IO_TIMING_FAR_END_VMEAS      ; Half Signal Swing                                     ; --            ; --          ; --             ;
-; OUTPUT_IO_TIMING_NEAR_END_VMEAS     ; Half Vccio                                            ; --            ; --          ; --             ;
-; OUTPUT_IO_TIMING_NEAR_END_VMEAS     ; Half Vccio                                            ; --            ; --          ; --             ;
-; PARTITION_COLOR                     ; -- (Not supported for targeted family)                ; --            ; top         ; Top            ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family)                ; --            ; top         ; Top            ;
-; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family)                ; --            ; top         ; Top            ;
-; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                                   ; --            ; --          ; --             ;
-; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                 ; --            ; --          ; --             ;
-; PROJECT_OUTPUT_DIRECTORY            ; output_files                                          ; --            ; --          ; --             ;
-; SLD_FILE                            ; soc/synthesis/soc.regmap                              ; --            ; --          ; --             ;
-; SLD_FILE                            ; soc/synthesis/soc.debuginfo                           ; --            ; --          ; --             ;
-; SLD_INFO                            ; QSYS_NAME soc HAS_SOPCINFO 1 GENERATION_ID 1667943953 ; --            ; soc         ; --             ;
-; SOPCINFO_FILE                       ; soc/synthesis/../../soc.sopcinfo                      ; --            ; --          ; --             ;
-; SYNTHESIS_ONLY_QIP                  ; On                                                    ; --            ; --          ; --             ;
-; TOP_LEVEL_ENTITY                    ; top                                                   ; final-project ; --          ; --             ;
-+-------------------------------------+-------------------------------------------------------+---------------+-------------+----------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                                 ;
++-------------------------------------+-------------------------------------------------------+---------------+-------------------+----------------+
+; Assignment Name                     ; Value                                                 ; Default Value ; Entity Name       ; Section Id     ;
++-------------------------------------+-------------------------------------------------------+---------------+-------------------+----------------+
+; COMPILER_SIGNATURE_ID               ; 48599032571974.166858921824252                        ; --            ; --                ; --             ;
+; EDA_OUTPUT_DATA_FORMAT              ; Systemverilog Hdl                                     ; --            ; --                ; eda_simulation ;
+; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (SystemVerilog)                       ; <None>        ; --                ; --             ;
+; EDA_TIME_SCALE                      ; 1 ps                                                  ; --            ; --                ; eda_simulation ;
+; MAX_CORE_JUNCTION_TEMP              ; 85                                                    ; --            ; --                ; --             ;
+; MIN_CORE_JUNCTION_TEMP              ; 0                                                     ; --            ; --                ; --             ;
+; MISC_FILE                           ; soc/synthesis/../soc.cmp                              ; --            ; --                ; --             ;
+; MISC_FILE                           ; soc/synthesis/../../soc.qsys                          ; --            ; --                ; --             ;
+; OUTPUT_IO_TIMING_FAR_END_VMEAS      ; Half Signal Swing                                     ; --            ; --                ; --             ;
+; OUTPUT_IO_TIMING_FAR_END_VMEAS      ; Half Signal Swing                                     ; --            ; --                ; --             ;
+; OUTPUT_IO_TIMING_NEAR_END_VMEAS     ; Half Vccio                                            ; --            ; --                ; --             ;
+; OUTPUT_IO_TIMING_NEAR_END_VMEAS     ; Half Vccio                                            ; --            ; --                ; --             ;
+; PARTITION_COLOR                     ; -- (Not supported for targeted family)                ; --            ; DE10_LITE_Default ; Top            ;
+; PARTITION_COLOR                     ; -- (Not supported for targeted family)                ; --            ; top               ; Top            ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family)                ; --            ; DE10_LITE_Default ; Top            ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family)                ; --            ; top               ; Top            ;
+; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family)                ; --            ; DE10_LITE_Default ; Top            ;
+; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family)                ; --            ; top               ; Top            ;
+; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                                   ; --            ; --                ; --             ;
+; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                 ; --            ; --                ; --             ;
+; PROJECT_OUTPUT_DIRECTORY            ; output_files                                          ; --            ; --                ; --             ;
+; SLD_FILE                            ; soc/synthesis/soc.regmap                              ; --            ; --                ; --             ;
+; SLD_FILE                            ; soc/synthesis/soc.debuginfo                           ; --            ; --                ; --             ;
+; SLD_INFO                            ; QSYS_NAME soc HAS_SOPCINFO 1 GENERATION_ID 1667943953 ; --            ; soc               ; --             ;
+; SOPCINFO_FILE                       ; soc/synthesis/../../soc.sopcinfo                      ; --            ; --                ; --             ;
+; SYNTHESIS_ONLY_QIP                  ; On                                                    ; --            ; --                ; --             ;
+; TOP_LEVEL_ENTITY                    ; top                                                   ; final-project ; --                ; --             ;
++-------------------------------------+-------------------------------------------------------+---------------+-------------------+----------------+
 
 
 +--------------------------------------------------------------------------------------------------------------------------+
@@ -109,12 +112,12 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:33     ; 1.0                     ; 5038 MB             ; 00:00:53                           ;
-; Fitter               ; 00:00:30     ; 1.5                     ; 6676 MB             ; 00:01:01                           ;
-; Assembler            ; 00:00:03     ; 1.0                     ; 4700 MB             ; 00:00:03                           ;
-; Timing Analyzer      ; 00:00:06     ; 2.5                     ; 5019 MB             ; 00:00:13                           ;
-; EDA Netlist Writer   ; 00:00:02     ; 1.0                     ; 4720 MB             ; 00:00:03                           ;
-; Total                ; 00:01:14     ; --                      ; --                  ; 00:02:13                           ;
+; Analysis & Synthesis ; 00:00:50     ; 1.0                     ; 5046 MB             ; 00:01:20                           ;
+; Fitter               ; 00:00:20     ; 2.0                     ; 6691 MB             ; 00:00:53                           ;
+; Assembler            ; 00:00:03     ; 1.0                     ; 4701 MB             ; 00:00:03                           ;
+; Timing Analyzer      ; 00:00:06     ; 3.4                     ; 5026 MB             ; 00:00:13                           ;
+; EDA Netlist Writer   ; 00:00:02     ; 1.0                     ; 4729 MB             ; 00:00:03                           ;
+; Total                ; 00:01:21     ; --                      ; --                  ; 00:02:32                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

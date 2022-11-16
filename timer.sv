@@ -19,3 +19,22 @@ always_comb begin
 end
 
 endmodule
+
+module big_timer(input logic clk, input logic [31:0] divider, output logic irq);
+
+logic [31:0] acc;
+
+always_ff @ (posedge clk) begin
+    acc <= acc + 1;
+end
+
+always_comb begin
+    if (acc % divider == 0) begin
+        irq = 1;
+    end
+    else begin
+        irq = 0;
+    end
+end
+
+endmodule

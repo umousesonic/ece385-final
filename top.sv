@@ -43,7 +43,10 @@ module top (
 
       ///////// ARDUINO /////////
       inout    [15: 0]   ARDUINO_IO,
-      inout              ARDUINO_RESET_N 
+      inout              ARDUINO_RESET_N ,
+
+	  ///////// GPIO ///////////
+	  output [35:0] GPIO
 
 );
 
@@ -145,12 +148,29 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 		
 		//LEDs and HEX
 		.hex_digits_export({hex_num_4, hex_num_3, hex_num_1, hex_num_0}),
-		.led_wire_export({hundreds, signs, LEDR}),
+		// .led_wire_export({hundreds, signs, LEDR}),
+		.led_wire_export(),
 		.keycode_export(keycode)
 		
 	 );
 	
-timer mytimer(.clk(MAX10_CLK1_50), .divider(), .irq());
+logic [11:0] freq;
+logic add;
 
+// square sound (.clk(MAX10_CLK1_50), .on(1'b1), .freq(myfreq), .sound(GPIO[0]));
+//
+// logic [11:0] myfreq;
+// logic [31:0] counter;
+//
+// always_ff @ (posedge MAX10_CLK1_50) begin
+// 	counter <= counter + 1;
+// 	if (counter % 50000000 == 0) begin
+// 		myfreq <= myfreq + 100;
+// 	end
+// end
+
+drummachine dm (.clk(MAX10_CLK1_50), .sw(SW[7:0]), .bpm(8'd128), .sound(LEDR[0]));
+
+// triangle trisound (.clk(MAX10_CLK1_50), .on(1'b1), .freq(12'd440), .sound(GPIO[4:1]));
 
 endmodule
