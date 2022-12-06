@@ -147,21 +147,26 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 		.usb_gpx_export(USB_GPX),
 		
 		//LEDs and HEX
-		.hex_digits_export({hex_num_4, hex_num_3, hex_num_1, hex_num_0}),
+		// .hex_digits_export({hex_num_4, hex_num_3, hex_num_1, hex_num_0}),
 		// .led_wire_export({hundreds, signs, LEDR}),
 		.led_wire_export(),
-		.keycode_export(keycode)
-		
+		.keycode_export(keycode),
+		.gpio_1_gpio(GPIO[1:0]),
+		.gpio_2_gpio(GPIO[3:2]),
+		.gpio_3_gpio(GPIO[5:4]),
+
+		.drum_sound_sound(LEDR[0])
+
 	 );
 	
 logic [11:0] freq;
 logic add;
 
-// square sound (.clk(MAX10_CLK1_50), .on(1'b1), .freq(myfreq), .sound(GPIO[0]));
+// square sound (.clk(MAX10_CLK1_50), .freq(12'd440), .sound(GPIO[0]));
 //
 // logic [11:0] myfreq;
 // logic [31:0] counter;
-//
+
 // always_ff @ (posedge MAX10_CLK1_50) begin
 // 	counter <= counter + 1;
 // 	if (counter % 50000000 == 0) begin
@@ -169,8 +174,13 @@ logic add;
 // 	end
 // end
 
-drummachine dm (.clk(MAX10_CLK1_50), .sw(SW[7:0]), .bpm(8'd128), .sound(LEDR[0]));
 
-// triangle trisound (.clk(MAX10_CLK1_50), .on(1'b1), .freq(12'd440), .sound(GPIO[4:1]));
+// drummachine dm (.clk(MAX10_CLK1_50), .sw(SW[8:0]), .bpm(8'd120), .leds(LEDR[7:0]), 
+// 				.sound({LEDR[9], GPIO[27]}), .idx(hex_num_0), .keys(KEY));
+
+
+
+
+// triangle trisound (.clk(MAX10_CLK1_50), .freq(myfreq), .sound(GPIO[4:1]));
 
 endmodule

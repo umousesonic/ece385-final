@@ -5,6 +5,10 @@
 `timescale 1 ps / 1 ps
 module soc (
 		input  wire        clk_clk,                                       //                                    clk.clk
+		output wire        drum_sound_sound,                              //                             drum_sound.sound
+		output wire [15:0] gpio_1_gpio,                                   //                                 gpio_1.gpio
+		output wire [15:0] gpio_2_gpio,                                   //                                 gpio_2.gpio
+		output wire [15:0] gpio_3_gpio,                                   //                                 gpio_3.gpio
 		output wire [15:0] hex_digits_export,                             //                             hex_digits.export
 		input  wire [1:0]  key_wire_export,                               //                               key_wire.export
 		output wire [7:0]  keycode_export,                                //                                keycode.export
@@ -51,6 +55,34 @@ module soc (
 	wire         mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read;        // mm_interconnect_0:jtag_uart_0_avalon_jtag_slave_read -> jtag_uart_0:av_read_n
 	wire         mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write;       // mm_interconnect_0:jtag_uart_0_avalon_jtag_slave_write -> jtag_uart_0:av_write_n
 	wire  [31:0] mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_writedata;   // mm_interconnect_0:jtag_uart_0_avalon_jtag_slave_writedata -> jtag_uart_0:av_writedata
+	wire         mm_interconnect_0_drum_module_0_avalon_slave_0_chipselect;   // mm_interconnect_0:drum_module_0_avalon_slave_0_chipselect -> drum_module_0:AVL_CS
+	wire  [31:0] mm_interconnect_0_drum_module_0_avalon_slave_0_readdata;     // drum_module_0:AVL_READDATA -> mm_interconnect_0:drum_module_0_avalon_slave_0_readdata
+	wire  [15:0] mm_interconnect_0_drum_module_0_avalon_slave_0_address;      // mm_interconnect_0:drum_module_0_avalon_slave_0_address -> drum_module_0:AVL_ADDR
+	wire         mm_interconnect_0_drum_module_0_avalon_slave_0_read;         // mm_interconnect_0:drum_module_0_avalon_slave_0_read -> drum_module_0:AVL_READ
+	wire   [3:0] mm_interconnect_0_drum_module_0_avalon_slave_0_byteenable;   // mm_interconnect_0:drum_module_0_avalon_slave_0_byteenable -> drum_module_0:AVL_BYTE_EN
+	wire         mm_interconnect_0_drum_module_0_avalon_slave_0_write;        // mm_interconnect_0:drum_module_0_avalon_slave_0_write -> drum_module_0:AVL_WRITE
+	wire  [31:0] mm_interconnect_0_drum_module_0_avalon_slave_0_writedata;    // mm_interconnect_0:drum_module_0_avalon_slave_0_writedata -> drum_module_0:AVL_WRITEDATA
+	wire         mm_interconnect_0_sound_interface_0_avl_mm_slave_chipselect; // mm_interconnect_0:sound_interface_0_avl_mm_slave_chipselect -> sound_interface_0:AVL_CS
+	wire  [31:0] mm_interconnect_0_sound_interface_0_avl_mm_slave_readdata;   // sound_interface_0:AVL_READDATA -> mm_interconnect_0:sound_interface_0_avl_mm_slave_readdata
+	wire   [1:0] mm_interconnect_0_sound_interface_0_avl_mm_slave_address;    // mm_interconnect_0:sound_interface_0_avl_mm_slave_address -> sound_interface_0:AVL_ADDR
+	wire         mm_interconnect_0_sound_interface_0_avl_mm_slave_read;       // mm_interconnect_0:sound_interface_0_avl_mm_slave_read -> sound_interface_0:AVL_READ
+	wire   [3:0] mm_interconnect_0_sound_interface_0_avl_mm_slave_byteenable; // mm_interconnect_0:sound_interface_0_avl_mm_slave_byteenable -> sound_interface_0:AVL_BYTE_EN
+	wire         mm_interconnect_0_sound_interface_0_avl_mm_slave_write;      // mm_interconnect_0:sound_interface_0_avl_mm_slave_write -> sound_interface_0:AVL_WRITE
+	wire  [31:0] mm_interconnect_0_sound_interface_0_avl_mm_slave_writedata;  // mm_interconnect_0:sound_interface_0_avl_mm_slave_writedata -> sound_interface_0:AVL_WRITEDATA
+	wire         mm_interconnect_0_sound_interface_1_avl_mm_slave_chipselect; // mm_interconnect_0:sound_interface_1_avl_mm_slave_chipselect -> sound_interface_1:AVL_CS
+	wire  [31:0] mm_interconnect_0_sound_interface_1_avl_mm_slave_readdata;   // sound_interface_1:AVL_READDATA -> mm_interconnect_0:sound_interface_1_avl_mm_slave_readdata
+	wire   [1:0] mm_interconnect_0_sound_interface_1_avl_mm_slave_address;    // mm_interconnect_0:sound_interface_1_avl_mm_slave_address -> sound_interface_1:AVL_ADDR
+	wire         mm_interconnect_0_sound_interface_1_avl_mm_slave_read;       // mm_interconnect_0:sound_interface_1_avl_mm_slave_read -> sound_interface_1:AVL_READ
+	wire   [3:0] mm_interconnect_0_sound_interface_1_avl_mm_slave_byteenable; // mm_interconnect_0:sound_interface_1_avl_mm_slave_byteenable -> sound_interface_1:AVL_BYTE_EN
+	wire         mm_interconnect_0_sound_interface_1_avl_mm_slave_write;      // mm_interconnect_0:sound_interface_1_avl_mm_slave_write -> sound_interface_1:AVL_WRITE
+	wire  [31:0] mm_interconnect_0_sound_interface_1_avl_mm_slave_writedata;  // mm_interconnect_0:sound_interface_1_avl_mm_slave_writedata -> sound_interface_1:AVL_WRITEDATA
+	wire         mm_interconnect_0_sound_interface_2_avl_mm_slave_chipselect; // mm_interconnect_0:sound_interface_2_avl_mm_slave_chipselect -> sound_interface_2:AVL_CS
+	wire  [31:0] mm_interconnect_0_sound_interface_2_avl_mm_slave_readdata;   // sound_interface_2:AVL_READDATA -> mm_interconnect_0:sound_interface_2_avl_mm_slave_readdata
+	wire   [1:0] mm_interconnect_0_sound_interface_2_avl_mm_slave_address;    // mm_interconnect_0:sound_interface_2_avl_mm_slave_address -> sound_interface_2:AVL_ADDR
+	wire         mm_interconnect_0_sound_interface_2_avl_mm_slave_read;       // mm_interconnect_0:sound_interface_2_avl_mm_slave_read -> sound_interface_2:AVL_READ
+	wire   [3:0] mm_interconnect_0_sound_interface_2_avl_mm_slave_byteenable; // mm_interconnect_0:sound_interface_2_avl_mm_slave_byteenable -> sound_interface_2:AVL_BYTE_EN
+	wire         mm_interconnect_0_sound_interface_2_avl_mm_slave_write;      // mm_interconnect_0:sound_interface_2_avl_mm_slave_write -> sound_interface_2:AVL_WRITE
+	wire  [31:0] mm_interconnect_0_sound_interface_2_avl_mm_slave_writedata;  // mm_interconnect_0:sound_interface_2_avl_mm_slave_writedata -> sound_interface_2:AVL_WRITEDATA
 	wire  [31:0] mm_interconnect_0_sysid_qsys_0_control_slave_readdata;       // sysid_qsys_0:readdata -> mm_interconnect_0:sysid_qsys_0_control_slave_readdata
 	wire   [0:0] mm_interconnect_0_sysid_qsys_0_control_slave_address;        // mm_interconnect_0:sysid_qsys_0_control_slave_address -> sysid_qsys_0:address
 	wire  [31:0] mm_interconnect_0_nios2_gen2_0_debug_mem_slave_readdata;     // nios2_gen2_0:debug_mem_slave_readdata -> mm_interconnect_0:nios2_gen2_0_debug_mem_slave_readdata
@@ -66,15 +98,6 @@ module soc (
 	wire         mm_interconnect_0_sdram_pll_pll_slave_read;                  // mm_interconnect_0:sdram_pll_pll_slave_read -> sdram_pll:read
 	wire         mm_interconnect_0_sdram_pll_pll_slave_write;                 // mm_interconnect_0:sdram_pll_pll_slave_write -> sdram_pll:write
 	wire  [31:0] mm_interconnect_0_sdram_pll_pll_slave_writedata;             // mm_interconnect_0:sdram_pll_pll_slave_writedata -> sdram_pll:writedata
-	wire         mm_interconnect_0_sdram_s1_chipselect;                       // mm_interconnect_0:sdram_s1_chipselect -> sdram:az_cs
-	wire  [15:0] mm_interconnect_0_sdram_s1_readdata;                         // sdram:za_data -> mm_interconnect_0:sdram_s1_readdata
-	wire         mm_interconnect_0_sdram_s1_waitrequest;                      // sdram:za_waitrequest -> mm_interconnect_0:sdram_s1_waitrequest
-	wire  [24:0] mm_interconnect_0_sdram_s1_address;                          // mm_interconnect_0:sdram_s1_address -> sdram:az_addr
-	wire         mm_interconnect_0_sdram_s1_read;                             // mm_interconnect_0:sdram_s1_read -> sdram:az_rd_n
-	wire   [1:0] mm_interconnect_0_sdram_s1_byteenable;                       // mm_interconnect_0:sdram_s1_byteenable -> sdram:az_be_n
-	wire         mm_interconnect_0_sdram_s1_readdatavalid;                    // sdram:za_valid -> mm_interconnect_0:sdram_s1_readdatavalid
-	wire         mm_interconnect_0_sdram_s1_write;                            // mm_interconnect_0:sdram_s1_write -> sdram:az_wr_n
-	wire  [15:0] mm_interconnect_0_sdram_s1_writedata;                        // mm_interconnect_0:sdram_s1_writedata -> sdram:az_data
 	wire         mm_interconnect_0_led_s1_chipselect;                         // mm_interconnect_0:led_s1_chipselect -> led:chipselect
 	wire  [31:0] mm_interconnect_0_led_s1_readdata;                           // led:readdata -> mm_interconnect_0:led_s1_readdata
 	wire   [1:0] mm_interconnect_0_led_s1_address;                            // mm_interconnect_0:led_s1_address -> led:address
@@ -115,6 +138,15 @@ module soc (
 	wire   [3:0] mm_interconnect_0_timer_0_s1_address;                        // mm_interconnect_0:timer_0_s1_address -> timer_0:address
 	wire         mm_interconnect_0_timer_0_s1_write;                          // mm_interconnect_0:timer_0_s1_write -> timer_0:write_n
 	wire  [15:0] mm_interconnect_0_timer_0_s1_writedata;                      // mm_interconnect_0:timer_0_s1_writedata -> timer_0:writedata
+	wire         mm_interconnect_0_sdram_s1_chipselect;                       // mm_interconnect_0:sdram_s1_chipselect -> sdram:az_cs
+	wire  [15:0] mm_interconnect_0_sdram_s1_readdata;                         // sdram:za_data -> mm_interconnect_0:sdram_s1_readdata
+	wire         mm_interconnect_0_sdram_s1_waitrequest;                      // sdram:za_waitrequest -> mm_interconnect_0:sdram_s1_waitrequest
+	wire  [24:0] mm_interconnect_0_sdram_s1_address;                          // mm_interconnect_0:sdram_s1_address -> sdram:az_addr
+	wire         mm_interconnect_0_sdram_s1_read;                             // mm_interconnect_0:sdram_s1_read -> sdram:az_rd_n
+	wire   [1:0] mm_interconnect_0_sdram_s1_byteenable;                       // mm_interconnect_0:sdram_s1_byteenable -> sdram:az_be_n
+	wire         mm_interconnect_0_sdram_s1_readdatavalid;                    // sdram:za_valid -> mm_interconnect_0:sdram_s1_readdatavalid
+	wire         mm_interconnect_0_sdram_s1_write;                            // mm_interconnect_0:sdram_s1_write -> sdram:az_wr_n
+	wire  [15:0] mm_interconnect_0_sdram_s1_writedata;                        // mm_interconnect_0:sdram_s1_writedata -> sdram:az_data
 	wire         mm_interconnect_0_spi_0_spi_control_port_chipselect;         // mm_interconnect_0:spi_0_spi_control_port_chipselect -> spi_0:spi_select
 	wire  [15:0] mm_interconnect_0_spi_0_spi_control_port_readdata;           // spi_0:data_to_cpu -> mm_interconnect_0:spi_0_spi_control_port_readdata
 	wire   [2:0] mm_interconnect_0_spi_0_spi_control_port_address;            // mm_interconnect_0:spi_0_spi_control_port_address -> spi_0:mem_addr
@@ -125,12 +157,25 @@ module soc (
 	wire         irq_mapper_receiver1_irq;                                    // jtag_uart_0:av_irq -> irq_mapper:receiver1_irq
 	wire         irq_mapper_receiver2_irq;                                    // spi_0:irq -> irq_mapper:receiver2_irq
 	wire  [31:0] nios2_gen2_0_irq_irq;                                        // irq_mapper:sender_irq -> nios2_gen2_0:irq
-	wire         rst_controller_reset_out_reset;                              // rst_controller:reset_out -> [hex_digits_pio:reset_n, jtag_uart_0:rst_n, key:reset_n, keycode:reset_n, led:reset_n, mm_interconnect_0:jtag_uart_0_reset_reset_bridge_in_reset_reset, onchip_memory2_0:reset, rst_translator:in_reset, sdram_pll:reset, spi_0:reset_n, sw:reset_n, sysid_qsys_0:reset_n, timer_0:reset_n, usb_gpx:reset_n, usb_irq:reset_n, usb_rst:reset_n]
+	wire         rst_controller_reset_out_reset;                              // rst_controller:reset_out -> [drum_module_0:reset, hex_digits_pio:reset_n, jtag_uart_0:rst_n, key:reset_n, keycode:reset_n, led:reset_n, mm_interconnect_0:jtag_uart_0_reset_reset_bridge_in_reset_reset, onchip_memory2_0:reset, rst_translator:in_reset, sdram_pll:reset, sound_interface_0:reset, sound_interface_1:reset, sound_interface_2:reset, spi_0:reset_n, sw:reset_n, sysid_qsys_0:reset_n, timer_0:reset_n, usb_gpx:reset_n, usb_irq:reset_n, usb_rst:reset_n]
 	wire         rst_controller_reset_out_reset_req;                          // rst_controller:reset_req -> [onchip_memory2_0:reset_req, rst_translator:reset_req_in]
 	wire         nios2_gen2_0_debug_reset_request_reset;                      // nios2_gen2_0:debug_reset_request -> [rst_controller:reset_in1, rst_controller_002:reset_in1]
 	wire         rst_controller_001_reset_out_reset;                          // rst_controller_001:reset_out -> [irq_mapper:reset, mm_interconnect_0:nios2_gen2_0_reset_reset_bridge_in_reset_reset, nios2_gen2_0:reset_n]
 	wire         rst_controller_001_reset_out_reset_req;                      // rst_controller_001:reset_req -> [nios2_gen2_0:reset_req, rst_translator_001:reset_req_in]
 	wire         rst_controller_002_reset_out_reset;                          // rst_controller_002:reset_out -> [mm_interconnect_0:sdram_reset_reset_bridge_in_reset_reset, sdram:reset_n]
+
+	drum_module drum_module_0 (
+		.clk           (clk_clk),                                                   //          clock.clk
+		.reset         (rst_controller_reset_out_reset),                            //          reset.reset
+		.AVL_CS        (mm_interconnect_0_drum_module_0_avalon_slave_0_chipselect), // avalon_slave_0.chipselect
+		.AVL_BYTE_EN   (mm_interconnect_0_drum_module_0_avalon_slave_0_byteenable), //               .byteenable
+		.AVL_ADDR      (mm_interconnect_0_drum_module_0_avalon_slave_0_address),    //               .address
+		.AVL_READDATA  (mm_interconnect_0_drum_module_0_avalon_slave_0_readdata),   //               .readdata
+		.AVL_WRITEDATA (mm_interconnect_0_drum_module_0_avalon_slave_0_writedata),  //               .writedata
+		.AVL_READ      (mm_interconnect_0_drum_module_0_avalon_slave_0_read),       //               .read
+		.AVL_WRITE     (mm_interconnect_0_drum_module_0_avalon_slave_0_write),      //               .write
+		.sound         (drum_sound_sound)                                           //          sound.sound
+	);
 
 	soc_hex_digits_pio hex_digits_pio (
 		.clk        (clk_clk),                                        //                 clk.clk
@@ -279,6 +324,45 @@ module soc (
 		.configupdate       (1'b0)                                             //           (terminated)
 	);
 
+	sound_interface sound_interface_0 (
+		.clk           (clk_clk),                                                     //          clk.clk
+		.reset         (rst_controller_reset_out_reset),                              //        reset.reset
+		.GPIO          (gpio_1_gpio),                                                 //         GPIO.gpio
+		.AVL_READ      (mm_interconnect_0_sound_interface_0_avl_mm_slave_read),       // avl_mm_slave.read
+		.AVL_WRITE     (mm_interconnect_0_sound_interface_0_avl_mm_slave_write),      //             .write
+		.AVL_WRITEDATA (mm_interconnect_0_sound_interface_0_avl_mm_slave_writedata),  //             .writedata
+		.AVL_READDATA  (mm_interconnect_0_sound_interface_0_avl_mm_slave_readdata),   //             .readdata
+		.AVL_ADDR      (mm_interconnect_0_sound_interface_0_avl_mm_slave_address),    //             .address
+		.AVL_BYTE_EN   (mm_interconnect_0_sound_interface_0_avl_mm_slave_byteenable), //             .byteenable
+		.AVL_CS        (mm_interconnect_0_sound_interface_0_avl_mm_slave_chipselect)  //             .chipselect
+	);
+
+	sound_interface sound_interface_1 (
+		.clk           (clk_clk),                                                     //          clk.clk
+		.reset         (rst_controller_reset_out_reset),                              //        reset.reset
+		.GPIO          (gpio_2_gpio),                                                 //         GPIO.gpio
+		.AVL_READ      (mm_interconnect_0_sound_interface_1_avl_mm_slave_read),       // avl_mm_slave.read
+		.AVL_WRITE     (mm_interconnect_0_sound_interface_1_avl_mm_slave_write),      //             .write
+		.AVL_WRITEDATA (mm_interconnect_0_sound_interface_1_avl_mm_slave_writedata),  //             .writedata
+		.AVL_READDATA  (mm_interconnect_0_sound_interface_1_avl_mm_slave_readdata),   //             .readdata
+		.AVL_ADDR      (mm_interconnect_0_sound_interface_1_avl_mm_slave_address),    //             .address
+		.AVL_BYTE_EN   (mm_interconnect_0_sound_interface_1_avl_mm_slave_byteenable), //             .byteenable
+		.AVL_CS        (mm_interconnect_0_sound_interface_1_avl_mm_slave_chipselect)  //             .chipselect
+	);
+
+	sound_interface sound_interface_2 (
+		.clk           (clk_clk),                                                     //          clk.clk
+		.reset         (rst_controller_reset_out_reset),                              //        reset.reset
+		.GPIO          (gpio_3_gpio),                                                 //         GPIO.gpio
+		.AVL_READ      (mm_interconnect_0_sound_interface_2_avl_mm_slave_read),       // avl_mm_slave.read
+		.AVL_WRITE     (mm_interconnect_0_sound_interface_2_avl_mm_slave_write),      //             .write
+		.AVL_WRITEDATA (mm_interconnect_0_sound_interface_2_avl_mm_slave_writedata),  //             .writedata
+		.AVL_READDATA  (mm_interconnect_0_sound_interface_2_avl_mm_slave_readdata),   //             .readdata
+		.AVL_ADDR      (mm_interconnect_0_sound_interface_2_avl_mm_slave_address),    //             .address
+		.AVL_BYTE_EN   (mm_interconnect_0_sound_interface_2_avl_mm_slave_byteenable), //             .byteenable
+		.AVL_CS        (mm_interconnect_0_sound_interface_2_avl_mm_slave_chipselect)  //             .chipselect
+	);
+
 	soc_spi_0 spi_0 (
 		.clk           (clk_clk),                                             //              clk.clk
 		.reset_n       (~rst_controller_reset_out_reset),                     //            reset.reset_n
@@ -366,6 +450,13 @@ module soc (
 		.nios2_gen2_0_instruction_master_waitrequest    (nios2_gen2_0_instruction_master_waitrequest),                 //                                         .waitrequest
 		.nios2_gen2_0_instruction_master_read           (nios2_gen2_0_instruction_master_read),                        //                                         .read
 		.nios2_gen2_0_instruction_master_readdata       (nios2_gen2_0_instruction_master_readdata),                    //                                         .readdata
+		.drum_module_0_avalon_slave_0_address           (mm_interconnect_0_drum_module_0_avalon_slave_0_address),      //             drum_module_0_avalon_slave_0.address
+		.drum_module_0_avalon_slave_0_write             (mm_interconnect_0_drum_module_0_avalon_slave_0_write),        //                                         .write
+		.drum_module_0_avalon_slave_0_read              (mm_interconnect_0_drum_module_0_avalon_slave_0_read),         //                                         .read
+		.drum_module_0_avalon_slave_0_readdata          (mm_interconnect_0_drum_module_0_avalon_slave_0_readdata),     //                                         .readdata
+		.drum_module_0_avalon_slave_0_writedata         (mm_interconnect_0_drum_module_0_avalon_slave_0_writedata),    //                                         .writedata
+		.drum_module_0_avalon_slave_0_byteenable        (mm_interconnect_0_drum_module_0_avalon_slave_0_byteenable),   //                                         .byteenable
+		.drum_module_0_avalon_slave_0_chipselect        (mm_interconnect_0_drum_module_0_avalon_slave_0_chipselect),   //                                         .chipselect
 		.hex_digits_pio_s1_address                      (mm_interconnect_0_hex_digits_pio_s1_address),                 //                        hex_digits_pio_s1.address
 		.hex_digits_pio_s1_write                        (mm_interconnect_0_hex_digits_pio_s1_write),                   //                                         .write
 		.hex_digits_pio_s1_readdata                     (mm_interconnect_0_hex_digits_pio_s1_readdata),                //                                         .readdata
@@ -419,6 +510,27 @@ module soc (
 		.sdram_pll_pll_slave_read                       (mm_interconnect_0_sdram_pll_pll_slave_read),                  //                                         .read
 		.sdram_pll_pll_slave_readdata                   (mm_interconnect_0_sdram_pll_pll_slave_readdata),              //                                         .readdata
 		.sdram_pll_pll_slave_writedata                  (mm_interconnect_0_sdram_pll_pll_slave_writedata),             //                                         .writedata
+		.sound_interface_0_avl_mm_slave_address         (mm_interconnect_0_sound_interface_0_avl_mm_slave_address),    //           sound_interface_0_avl_mm_slave.address
+		.sound_interface_0_avl_mm_slave_write           (mm_interconnect_0_sound_interface_0_avl_mm_slave_write),      //                                         .write
+		.sound_interface_0_avl_mm_slave_read            (mm_interconnect_0_sound_interface_0_avl_mm_slave_read),       //                                         .read
+		.sound_interface_0_avl_mm_slave_readdata        (mm_interconnect_0_sound_interface_0_avl_mm_slave_readdata),   //                                         .readdata
+		.sound_interface_0_avl_mm_slave_writedata       (mm_interconnect_0_sound_interface_0_avl_mm_slave_writedata),  //                                         .writedata
+		.sound_interface_0_avl_mm_slave_byteenable      (mm_interconnect_0_sound_interface_0_avl_mm_slave_byteenable), //                                         .byteenable
+		.sound_interface_0_avl_mm_slave_chipselect      (mm_interconnect_0_sound_interface_0_avl_mm_slave_chipselect), //                                         .chipselect
+		.sound_interface_1_avl_mm_slave_address         (mm_interconnect_0_sound_interface_1_avl_mm_slave_address),    //           sound_interface_1_avl_mm_slave.address
+		.sound_interface_1_avl_mm_slave_write           (mm_interconnect_0_sound_interface_1_avl_mm_slave_write),      //                                         .write
+		.sound_interface_1_avl_mm_slave_read            (mm_interconnect_0_sound_interface_1_avl_mm_slave_read),       //                                         .read
+		.sound_interface_1_avl_mm_slave_readdata        (mm_interconnect_0_sound_interface_1_avl_mm_slave_readdata),   //                                         .readdata
+		.sound_interface_1_avl_mm_slave_writedata       (mm_interconnect_0_sound_interface_1_avl_mm_slave_writedata),  //                                         .writedata
+		.sound_interface_1_avl_mm_slave_byteenable      (mm_interconnect_0_sound_interface_1_avl_mm_slave_byteenable), //                                         .byteenable
+		.sound_interface_1_avl_mm_slave_chipselect      (mm_interconnect_0_sound_interface_1_avl_mm_slave_chipselect), //                                         .chipselect
+		.sound_interface_2_avl_mm_slave_address         (mm_interconnect_0_sound_interface_2_avl_mm_slave_address),    //           sound_interface_2_avl_mm_slave.address
+		.sound_interface_2_avl_mm_slave_write           (mm_interconnect_0_sound_interface_2_avl_mm_slave_write),      //                                         .write
+		.sound_interface_2_avl_mm_slave_read            (mm_interconnect_0_sound_interface_2_avl_mm_slave_read),       //                                         .read
+		.sound_interface_2_avl_mm_slave_readdata        (mm_interconnect_0_sound_interface_2_avl_mm_slave_readdata),   //                                         .readdata
+		.sound_interface_2_avl_mm_slave_writedata       (mm_interconnect_0_sound_interface_2_avl_mm_slave_writedata),  //                                         .writedata
+		.sound_interface_2_avl_mm_slave_byteenable      (mm_interconnect_0_sound_interface_2_avl_mm_slave_byteenable), //                                         .byteenable
+		.sound_interface_2_avl_mm_slave_chipselect      (mm_interconnect_0_sound_interface_2_avl_mm_slave_chipselect), //                                         .chipselect
 		.spi_0_spi_control_port_address                 (mm_interconnect_0_spi_0_spi_control_port_address),            //                   spi_0_spi_control_port.address
 		.spi_0_spi_control_port_write                   (mm_interconnect_0_spi_0_spi_control_port_write),              //                                         .write
 		.spi_0_spi_control_port_read                    (mm_interconnect_0_spi_0_spi_control_port_read),               //                                         .read

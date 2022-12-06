@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'soc'
  * SOPC Builder design path: ../../soc.sopcinfo
  *
- * Generated: Thu Nov 10 11:03:51 CST 2022
+ * Generated: Tue Dec 06 15:43:02 CST 2022
  */
 
 /*
@@ -142,6 +142,8 @@
 #define __ALTERA_AVALON_TIMER
 #define __ALTERA_NIOS2_GEN2
 #define __ALTPLL
+#define __DRUM_MODULE
+#define __SOUND_INTERFACE
 
 
 /*
@@ -160,24 +162,38 @@
 #define ALT_NUM_INTERNAL_INTERRUPT_CONTROLLERS 1
 #define ALT_NUM_INTERRUPT_CONTROLLERS 1
 #define ALT_STDERR "/dev/jtag_uart_0"
-#define ALT_STDERR_BASE 0x1c0
+#define ALT_STDERR_BASE 0x128
 #define ALT_STDERR_DEV jtag_uart_0
 #define ALT_STDERR_IS_JTAG_UART
 #define ALT_STDERR_PRESENT
 #define ALT_STDERR_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDIN "/dev/jtag_uart_0"
-#define ALT_STDIN_BASE 0x1c0
+#define ALT_STDIN_BASE 0x128
 #define ALT_STDIN_DEV jtag_uart_0
 #define ALT_STDIN_IS_JTAG_UART
 #define ALT_STDIN_PRESENT
 #define ALT_STDIN_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDOUT "/dev/jtag_uart_0"
-#define ALT_STDOUT_BASE 0x1c0
+#define ALT_STDOUT_BASE 0x128
 #define ALT_STDOUT_DEV jtag_uart_0
 #define ALT_STDOUT_IS_JTAG_UART
 #define ALT_STDOUT_PRESENT
 #define ALT_STDOUT_TYPE "altera_avalon_jtag_uart"
 #define ALT_SYSTEM_NAME "soc"
+
+
+/*
+ * drum_module_0 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_drum_module_0 drum_module
+#define DRUM_MODULE_0_BASE 0x80000
+#define DRUM_MODULE_0_IRQ -1
+#define DRUM_MODULE_0_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define DRUM_MODULE_0_NAME "/dev/drum_module_0"
+#define DRUM_MODULE_0_SPAN 262144
+#define DRUM_MODULE_0_TYPE "drum_module"
 
 
 /*
@@ -197,7 +213,7 @@
  */
 
 #define ALT_MODULE_CLASS_hex_digits_pio altera_avalon_pio
-#define HEX_DIGITS_PIO_BASE 0x160
+#define HEX_DIGITS_PIO_BASE 0x80
 #define HEX_DIGITS_PIO_BIT_CLEARING_EDGE_REGISTER 0
 #define HEX_DIGITS_PIO_BIT_MODIFYING_OUTPUT_REGISTER 0
 #define HEX_DIGITS_PIO_CAPTURE 0
@@ -224,7 +240,7 @@
  */
 
 #define ALT_MODULE_CLASS_jtag_uart_0 altera_avalon_jtag_uart
-#define JTAG_UART_0_BASE 0x1c0
+#define JTAG_UART_0_BASE 0x128
 #define JTAG_UART_0_IRQ 1
 #define JTAG_UART_0_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define JTAG_UART_0_NAME "/dev/jtag_uart_0"
@@ -400,6 +416,48 @@
 
 
 /*
+ * sound_interface_0 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_sound_interface_0 sound_interface
+#define SOUND_INTERFACE_0_BASE 0x4000
+#define SOUND_INTERFACE_0_IRQ -1
+#define SOUND_INTERFACE_0_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define SOUND_INTERFACE_0_NAME "/dev/sound_interface_0"
+#define SOUND_INTERFACE_0_SPAN 16
+#define SOUND_INTERFACE_0_TYPE "sound_interface"
+
+
+/*
+ * sound_interface_1 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_sound_interface_1 sound_interface
+#define SOUND_INTERFACE_1_BASE 0xa0
+#define SOUND_INTERFACE_1_IRQ -1
+#define SOUND_INTERFACE_1_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define SOUND_INTERFACE_1_NAME "/dev/sound_interface_1"
+#define SOUND_INTERFACE_1_SPAN 16
+#define SOUND_INTERFACE_1_TYPE "sound_interface"
+
+
+/*
+ * sound_interface_2 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_sound_interface_2 sound_interface
+#define SOUND_INTERFACE_2_BASE 0x90
+#define SOUND_INTERFACE_2_IRQ -1
+#define SOUND_INTERFACE_2_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define SOUND_INTERFACE_2_NAME "/dev/sound_interface_2"
+#define SOUND_INTERFACE_2_SPAN 16
+#define SOUND_INTERFACE_2_TYPE "sound_interface"
+
+
+/*
  * spi_0 configuration
  *
  */
@@ -463,13 +521,13 @@
  */
 
 #define ALT_MODULE_CLASS_sysid_qsys_0 altera_avalon_sysid_qsys
-#define SYSID_QSYS_0_BASE 0x1c8
+#define SYSID_QSYS_0_BASE 0x120
 #define SYSID_QSYS_0_ID 0
 #define SYSID_QSYS_0_IRQ -1
 #define SYSID_QSYS_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_QSYS_0_NAME "/dev/sysid_qsys_0"
 #define SYSID_QSYS_0_SPAN 8
-#define SYSID_QSYS_0_TIMESTAMP 1667943953
+#define SYSID_QSYS_0_TIMESTAMP 1670362823
 #define SYSID_QSYS_0_TYPE "altera_avalon_sysid_qsys"
 
 

@@ -2,10 +2,10 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Nov 10, 2022 11:03:50 AM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1668099830096</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Dec 6, 2022 3:43:02 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1670362982060</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\umous\Desktop\ece-385-final-project\software\main_bsp</BspGeneratedLocation>
-        <BspSettingsFile>.\settings.bsp</BspSettingsFile>
+        <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\soc.sopcinfo</SopcDesignFile>
         <JdiFile>default</JdiFile>
         <Cpu>nios2_gen2_0</Cpu>
@@ -929,6 +929,24 @@
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
+                <slaveDescriptor>hex_digits_pio</slaveDescriptor>
+                <addressRange>0x00000080 - 0x0000008F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>sound_interface_2</slaveDescriptor>
+                <addressRange>0x00000090 - 0x0000009F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>sound_interface_1</slaveDescriptor>
+                <addressRange>0x000000A0 - 0x000000AF</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
                 <slaveDescriptor>timer_0</slaveDescriptor>
                 <addressRange>0x000000C0 - 0x000000FF</addressRange>
                 <addressSpan>64</addressSpan>
@@ -941,10 +959,16 @@
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>hex_digits_pio</slaveDescriptor>
-                <addressRange>0x00000160 - 0x0000016F</addressRange>
-                <addressSpan>16</addressSpan>
+                <slaveDescriptor>sysid_qsys_0</slaveDescriptor>
+                <addressRange>0x00000120 - 0x00000127</addressRange>
+                <addressSpan>8</addressSpan>
                 <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>jtag_uart_0</slaveDescriptor>
+                <addressRange>0x00000128 - 0x0000012F</addressRange>
+                <addressSpan>8</addressSpan>
+                <attributes>printable</attributes>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>usb_rst</slaveDescriptor>
@@ -971,15 +995,15 @@
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>jtag_uart_0</slaveDescriptor>
-                <addressRange>0x000001C0 - 0x000001C7</addressRange>
-                <addressSpan>8</addressSpan>
-                <attributes>printable</attributes>
+                <slaveDescriptor>sound_interface_0</slaveDescriptor>
+                <addressRange>0x00004000 - 0x0000400F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>sysid_qsys_0</slaveDescriptor>
-                <addressRange>0x000001C8 - 0x000001CF</addressRange>
-                <addressSpan>8</addressSpan>
+                <slaveDescriptor>drum_module_0</slaveDescriptor>
+                <addressRange>0x00080000 - 0x000BFFFF</addressRange>
+                <addressSpan>262144</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
