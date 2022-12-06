@@ -1,0 +1,40 @@
+#include "main.h"
+
+void delay(int ms) {
+    for (int i = 0; i < ms*100; i ++) {
+        // Do nothing
+    }
+}
+int main(){
+    unsigned* si = 0x4000;
+    
+    for(int i = 0; i < sizeof(music) / 12; i++) {
+        delay(music[i*3+2]);
+
+        int freq;
+        if(music[i*3+1] != 0){
+            freq = freq_lut[music[i*3]];
+            *si = freq;
+
+            // Readout test
+            if (*si == freq_lut[music[i*3]]) {
+                printf("Frequency correct! Freq is: %d \n", freq_lut[music[i*3]]);
+            }
+            else {
+                printf("Read incorrect!! \n");
+            }
+            
+        }
+        else{
+            freq = 0;
+            *si = freq;
+        }
+        
+        // Write to sound interface
+        
+    
+    }
+    return 0;
+}
+
+

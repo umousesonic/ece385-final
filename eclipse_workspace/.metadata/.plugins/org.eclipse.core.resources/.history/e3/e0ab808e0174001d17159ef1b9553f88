@@ -1,0 +1,5 @@
+int chan0[] = {0};
+int chan1[] = {0};
+int chan2[] = {0};
+int chan3[] = {0};
+int chan4[] = {0};
