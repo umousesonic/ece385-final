@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Dec 6, 2022 3:43:02 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1670362982060</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>Dec 7, 2022 10:45:39 PM</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1670474739667</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>C:\Users\umous\Desktop\ece-385-final-project\software\main_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>..\..\soc.sopcinfo</SopcDesignFile>
@@ -905,6 +905,12 @@
                 <attributes>memory</attributes>
         </MemoryMap>
         <MemoryMap>
+                <slaveDescriptor>instant_drum_module_0</slaveDescriptor>
+                <addressRange>0x00000030 - 0x0000003F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
                 <slaveDescriptor>key</slaveDescriptor>
                 <addressRange>0x00000040 - 0x0000004F</addressRange>
                 <addressSpan>16</addressSpan>
@@ -935,14 +941,14 @@
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>sound_interface_2</slaveDescriptor>
+                <slaveDescriptor>sound_interface_triangle_0</slaveDescriptor>
                 <addressRange>0x00000090 - 0x0000009F</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
-                <slaveDescriptor>sound_interface_1</slaveDescriptor>
-                <addressRange>0x000000A0 - 0x000000AF</addressRange>
+                <slaveDescriptor>sound_interface_2</slaveDescriptor>
+                <addressRange>0x000000B0 - 0x000000BF</addressRange>
                 <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
@@ -959,14 +965,20 @@
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
+                <slaveDescriptor>sound_interface_1</slaveDescriptor>
+                <addressRange>0x00000120 - 0x0000012F</addressRange>
+                <addressSpan>16</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
                 <slaveDescriptor>sysid_qsys_0</slaveDescriptor>
-                <addressRange>0x00000120 - 0x00000127</addressRange>
+                <addressRange>0x00000130 - 0x00000137</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>
                 <slaveDescriptor>jtag_uart_0</slaveDescriptor>
-                <addressRange>0x00000128 - 0x0000012F</addressRange>
+                <addressRange>0x00000138 - 0x0000013F</addressRange>
                 <addressSpan>8</addressSpan>
                 <attributes>printable</attributes>
         </MemoryMap>
@@ -1004,6 +1016,12 @@
                 <slaveDescriptor>drum_module_0</slaveDescriptor>
                 <addressRange>0x00080000 - 0x000BFFFF</addressRange>
                 <addressSpan>262144</addressSpan>
+                <attributes/>
+        </MemoryMap>
+        <MemoryMap>
+                <slaveDescriptor>led_module_0</slaveDescriptor>
+                <addressRange>0x000C0000 - 0x000C000F</addressRange>
+                <addressSpan>16</addressSpan>
                 <attributes/>
         </MemoryMap>
         <MemoryMap>

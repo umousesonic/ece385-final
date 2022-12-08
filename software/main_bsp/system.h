@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'soc'
  * SOPC Builder design path: ../../soc.sopcinfo
  *
- * Generated: Tue Dec 06 15:43:02 CST 2022
+ * Generated: Wed Dec 07 22:45:39 CST 2022
  */
 
 /*
@@ -143,7 +143,10 @@
 #define __ALTERA_NIOS2_GEN2
 #define __ALTPLL
 #define __DRUM_MODULE
+#define __INSTANT_DRUM_MODULE
+#define __LED_MODULE
 #define __SOUND_INTERFACE
+#define __SOUND_INTERFACE_TRIANGLE
 
 
 /*
@@ -162,19 +165,19 @@
 #define ALT_NUM_INTERNAL_INTERRUPT_CONTROLLERS 1
 #define ALT_NUM_INTERRUPT_CONTROLLERS 1
 #define ALT_STDERR "/dev/jtag_uart_0"
-#define ALT_STDERR_BASE 0x128
+#define ALT_STDERR_BASE 0x138
 #define ALT_STDERR_DEV jtag_uart_0
 #define ALT_STDERR_IS_JTAG_UART
 #define ALT_STDERR_PRESENT
 #define ALT_STDERR_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDIN "/dev/jtag_uart_0"
-#define ALT_STDIN_BASE 0x128
+#define ALT_STDIN_BASE 0x138
 #define ALT_STDIN_DEV jtag_uart_0
 #define ALT_STDIN_IS_JTAG_UART
 #define ALT_STDIN_PRESENT
 #define ALT_STDIN_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDOUT "/dev/jtag_uart_0"
-#define ALT_STDOUT_BASE 0x128
+#define ALT_STDOUT_BASE 0x138
 #define ALT_STDOUT_DEV jtag_uart_0
 #define ALT_STDOUT_IS_JTAG_UART
 #define ALT_STDOUT_PRESENT
@@ -235,12 +238,26 @@
 
 
 /*
+ * instant_drum_module_0 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_instant_drum_module_0 instant_drum_module
+#define INSTANT_DRUM_MODULE_0_BASE 0x30
+#define INSTANT_DRUM_MODULE_0_IRQ -1
+#define INSTANT_DRUM_MODULE_0_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define INSTANT_DRUM_MODULE_0_NAME "/dev/instant_drum_module_0"
+#define INSTANT_DRUM_MODULE_0_SPAN 16
+#define INSTANT_DRUM_MODULE_0_TYPE "instant_drum_module"
+
+
+/*
  * jtag_uart_0 configuration
  *
  */
 
 #define ALT_MODULE_CLASS_jtag_uart_0 altera_avalon_jtag_uart
-#define JTAG_UART_0_BASE 0x128
+#define JTAG_UART_0_BASE 0x138
 #define JTAG_UART_0_IRQ 1
 #define JTAG_UART_0_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define JTAG_UART_0_NAME "/dev/jtag_uart_0"
@@ -331,6 +348,20 @@
 #define LED_RESET_VALUE 0
 #define LED_SPAN 16
 #define LED_TYPE "altera_avalon_pio"
+
+
+/*
+ * led_module_0 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_led_module_0 led_module
+#define LED_MODULE_0_BASE 0xc0000
+#define LED_MODULE_0_IRQ -1
+#define LED_MODULE_0_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define LED_MODULE_0_NAME "/dev/led_module_0"
+#define LED_MODULE_0_SPAN 16
+#define LED_MODULE_0_TYPE "led_module"
 
 
 /*
@@ -435,7 +466,7 @@
  */
 
 #define ALT_MODULE_CLASS_sound_interface_1 sound_interface
-#define SOUND_INTERFACE_1_BASE 0xa0
+#define SOUND_INTERFACE_1_BASE 0x120
 #define SOUND_INTERFACE_1_IRQ -1
 #define SOUND_INTERFACE_1_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SOUND_INTERFACE_1_NAME "/dev/sound_interface_1"
@@ -449,12 +480,26 @@
  */
 
 #define ALT_MODULE_CLASS_sound_interface_2 sound_interface
-#define SOUND_INTERFACE_2_BASE 0x90
+#define SOUND_INTERFACE_2_BASE 0xb0
 #define SOUND_INTERFACE_2_IRQ -1
 #define SOUND_INTERFACE_2_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SOUND_INTERFACE_2_NAME "/dev/sound_interface_2"
 #define SOUND_INTERFACE_2_SPAN 16
 #define SOUND_INTERFACE_2_TYPE "sound_interface"
+
+
+/*
+ * sound_interface_triangle_0 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_sound_interface_triangle_0 sound_interface_triangle
+#define SOUND_INTERFACE_TRIANGLE_0_BASE 0x90
+#define SOUND_INTERFACE_TRIANGLE_0_IRQ -1
+#define SOUND_INTERFACE_TRIANGLE_0_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define SOUND_INTERFACE_TRIANGLE_0_NAME "/dev/sound_interface_triangle_0"
+#define SOUND_INTERFACE_TRIANGLE_0_SPAN 16
+#define SOUND_INTERFACE_TRIANGLE_0_TYPE "sound_interface_triangle"
 
 
 /*
@@ -521,13 +566,13 @@
  */
 
 #define ALT_MODULE_CLASS_sysid_qsys_0 altera_avalon_sysid_qsys
-#define SYSID_QSYS_0_BASE 0x120
+#define SYSID_QSYS_0_BASE 0x130
 #define SYSID_QSYS_0_ID 0
 #define SYSID_QSYS_0_IRQ -1
 #define SYSID_QSYS_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_QSYS_0_NAME "/dev/sysid_qsys_0"
 #define SYSID_QSYS_0_SPAN 8
-#define SYSID_QSYS_0_TIMESTAMP 1670362823
+#define SYSID_QSYS_0_TIMESTAMP 1670474476
 #define SYSID_QSYS_0_TYPE "altera_avalon_sysid_qsys"
 
 

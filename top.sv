@@ -151,11 +151,15 @@ logic Reset_h, vssig, blank, sync, VGA_Clk;
 		// .led_wire_export({hundreds, signs, LEDR}),
 		.led_wire_export(),
 		.keycode_export(keycode),
-		.gpio_1_gpio(GPIO[1:0]),
-		.gpio_2_gpio(GPIO[3:2]),
-		.gpio_3_gpio(GPIO[5:4]),
+		.gpio_1_gpio({GPIO[16], GPIO[1:0]}),
+		.gpio_2_gpio({GPIO[17], GPIO[3:2]}),
+		.gpio_3_gpio({GPIO[18], GPIO[5:4]}),
 
-		.drum_sound_sound(LEDR[0])
+		.drum_sound_sound(GPIO[27]),
+		.gpio_4_gpio(GPIO[32:28]),
+		.leds_leds(GPIO[14:10]),
+		.drum_instant_drum(GPIO[15])
+		// .gpio_4_gpio()
 
 	 );
 	
@@ -181,6 +185,6 @@ logic add;
 
 
 
-// triangle trisound (.clk(MAX10_CLK1_50), .freq(myfreq), .sound(GPIO[4:1]));
+// triangle trisound (.clk(MAX10_CLK1_50), .freq(12'd1000), .sound(GPIO[31:28]));
 
 endmodule

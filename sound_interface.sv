@@ -17,7 +17,7 @@ module sound_interface(
 	// Exported Conduit (mapped to GPIOs - make sure you export in Platform Designer)
 	// output logic [3:0]  red, green, blue,	// VGA color channels (mapped to output pins in top-level)
 	// output logic hs, vs						// VGA HS/VS
-    output logic [1:0] GPIO
+    output logic [2:0] GPIO
 );
 
 logic [31:0] freq_cache;
@@ -37,16 +37,21 @@ always_ff @(posedge clk) begin
 				freq_cache[23:16] <=  AVL_WRITEDATA[23:16];
 			if (AVL_BYTE_EN[3])
 				freq_cache[31:24] <=  AVL_WRITEDATA[31:24];
-			acc <= 1;
-			delay <= 0;
 		end
-		else begin
-			acc <= acc + 1;
-			if (acc % 1000 == 0) begin
-				if (delay != freq_cache[31:16])
-					delay <= delay + 1;
-				acc <= 1;
-			end
+	end
+end
+
+always_ff @ (posedge clk) begin
+	if (AVL_CS && AVL_WRITE) begin
+		acc <= 0;
+		delay <= 0;
+	end
+	else begin
+		acc <= acc + 1;
+		if (acc == 50000) begin
+			if (delay != freq_cache[31:16])
+				delay <= delay + 1;
+			acc <= 0;
 		end
 	end
 end
@@ -69,18 +74,28 @@ logic [11:0] higher_freq, lower_freq;
 
 // Frequncy divider
 always_comb begin
-	if (freq < 400) begin
+	if (freq == 0) begin
 		higher_freq = 0;
-		lower_freq = freq;
+		lower_freq = 0;
+		GPIO[2] = 1'b1;
 	end
 	else begin
-		if (freq < 800) begin
-			higher_freq = freq;
+		if (freq < 400) begin
+			higher_freq = 0;
 			lower_freq = freq;
+			GPIO[2] = 1'b0;
 		end
 		else begin
-			higher_freq = freq;
-			lower_freq = 0;
+			if (freq < 800) begin
+				higher_freq = freq;
+				lower_freq = freq;
+				GPIO[2] = 1'b0;
+			end
+			else begin
+				higher_freq = freq;
+				lower_freq = 0;
+				GPIO[2] = 1'b1;
+			end
 		end
 	end
 end

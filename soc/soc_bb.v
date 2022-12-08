@@ -1,14 +1,17 @@
 
 module soc (
 	clk_clk,
+	drum_instant_drum,
 	drum_sound_sound,
 	gpio_1_gpio,
 	gpio_2_gpio,
 	gpio_3_gpio,
+	gpio_4_gpio,
 	hex_digits_export,
 	key_wire_export,
 	keycode_export,
 	led_wire_export,
+	leds_leds,
 	nios2_gen2_0_custom_instruction_master_readra,
 	reset_reset_n,
 	sdram_clk_clk,
@@ -31,14 +34,17 @@ module soc (
 	usb_rst_export);	
 
 	input		clk_clk;
+	output		drum_instant_drum;
 	output		drum_sound_sound;
 	output	[15:0]	gpio_1_gpio;
 	output	[15:0]	gpio_2_gpio;
 	output	[15:0]	gpio_3_gpio;
+	output	[4:0]	gpio_4_gpio;
 	output	[15:0]	hex_digits_export;
 	input	[1:0]	key_wire_export;
 	output	[7:0]	keycode_export;
 	output	[13:0]	led_wire_export;
+	output	[4:0]	leds_leds;
 	output		nios2_gen2_0_custom_instruction_master_readra;
 	input		reset_reset_n;
 	output		sdram_clk_clk;

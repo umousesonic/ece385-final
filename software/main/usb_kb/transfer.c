@@ -163,6 +163,7 @@ BYTE XferDispatchPkt( BYTE token, BYTE ep )
         }
         rcode = ( MAXreg_rd( rHRSL ) & 0x0f );
         if( rcode == hrNAK ) {
+        	break;
             nak_count++;
             if( nak_count == USB_NAK_LIMIT ) {
                 break;

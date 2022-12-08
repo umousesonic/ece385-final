@@ -1,4 +1,4 @@
-module square(input logic [11:0] freq, clk, output logic sound);
+module square(input logic clk, input logic [11:0] freq, output logic sound);
 logic [22:0] divider;
 logic irq, on;
 
@@ -30,7 +30,7 @@ end
 
 endmodule
 
-module triangle (input logic [11:0] freq, clk, output logic [3:0] sound);
+module triangle (input logic clk, input logic [11:0] freq, output logic [3:0] sound);
 // This module uses 4 output to drive the R-2R DAC
 logic [22:0] divider;
 logic irq, rev, on;

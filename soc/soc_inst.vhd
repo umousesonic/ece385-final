@@ -1,14 +1,17 @@
 	component soc is
 		port (
 			clk_clk                                       : in    std_logic                     := 'X';             -- clk
+			drum_instant_drum                             : out   std_logic;                                        -- drum
 			drum_sound_sound                              : out   std_logic;                                        -- sound
 			gpio_1_gpio                                   : out   std_logic_vector(15 downto 0);                    -- gpio
 			gpio_2_gpio                                   : out   std_logic_vector(15 downto 0);                    -- gpio
 			gpio_3_gpio                                   : out   std_logic_vector(15 downto 0);                    -- gpio
+			gpio_4_gpio                                   : out   std_logic_vector(4 downto 0);                     -- gpio
 			hex_digits_export                             : out   std_logic_vector(15 downto 0);                    -- export
 			key_wire_export                               : in    std_logic_vector(1 downto 0)  := (others => 'X'); -- export
 			keycode_export                                : out   std_logic_vector(7 downto 0);                     -- export
 			led_wire_export                               : out   std_logic_vector(13 downto 0);                    -- export
+			leds_leds                                     : out   std_logic_vector(4 downto 0);                     -- leds
 			nios2_gen2_0_custom_instruction_master_readra : out   std_logic;                                        -- readra
 			reset_reset_n                                 : in    std_logic                     := 'X';             -- reset_n
 			sdram_clk_clk                                 : out   std_logic;                                        -- clk
@@ -35,14 +38,17 @@
 	u0 : component soc
 		port map (
 			clk_clk                                       => CONNECTED_TO_clk_clk,                                       --                                    clk.clk
+			drum_instant_drum                             => CONNECTED_TO_drum_instant_drum,                             --                           drum_instant.drum
 			drum_sound_sound                              => CONNECTED_TO_drum_sound_sound,                              --                             drum_sound.sound
 			gpio_1_gpio                                   => CONNECTED_TO_gpio_1_gpio,                                   --                                 gpio_1.gpio
 			gpio_2_gpio                                   => CONNECTED_TO_gpio_2_gpio,                                   --                                 gpio_2.gpio
 			gpio_3_gpio                                   => CONNECTED_TO_gpio_3_gpio,                                   --                                 gpio_3.gpio
+			gpio_4_gpio                                   => CONNECTED_TO_gpio_4_gpio,                                   --                                 gpio_4.gpio
 			hex_digits_export                             => CONNECTED_TO_hex_digits_export,                             --                             hex_digits.export
 			key_wire_export                               => CONNECTED_TO_key_wire_export,                               --                               key_wire.export
 			keycode_export                                => CONNECTED_TO_keycode_export,                                --                                keycode.export
 			led_wire_export                               => CONNECTED_TO_led_wire_export,                               --                               led_wire.export
+			leds_leds                                     => CONNECTED_TO_leds_leds,                                     --                                   leds.leds
 			nios2_gen2_0_custom_instruction_master_readra => CONNECTED_TO_nios2_gen2_0_custom_instruction_master_readra, -- nios2_gen2_0_custom_instruction_master.readra
 			reset_reset_n                                 => CONNECTED_TO_reset_reset_n,                                 --                                  reset.reset_n
 			sdram_clk_clk                                 => CONNECTED_TO_sdram_clk_clk,                                 --                              sdram_clk.clk

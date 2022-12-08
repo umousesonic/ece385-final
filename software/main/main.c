@@ -141,57 +141,57 @@ int keyNote(int key, int* octave, int* musicKey){
 
         //part 1: white keys
         case 4: //A
-            ret = 60;
+            ret = 36;
             break;
         case 22: //S
-            ret = 62;
+            ret = 38;
             break;
         case 7: //D
-            ret = 64;
+            ret = 40;
             break;
         case 9: //F
-            ret = 65;
+            ret = 41;
             break;
         case 10: //G
-            ret = 67;
+            ret = 43;
             break; 
         case 11: //H
-            ret = 69;
+            ret = 45;
             break;
         case 13: //J
-            ret = 71;
+            ret = 47;
             break;
         case 14: //K
-            ret = 72;
+            ret = 48;
             break;
         case 15: //L
-            ret = 74;
+            ret = 50;
             break;
         case 51: //;
-            ret = 76;
+            ret = 52;
             break;
 
         //part 2: black keys
         case 26: //W
-            ret = 61;
+            ret = 37;
             break;
         case 8: //E
-            ret = 63;
+            ret = 39;
             break;
         case 23: //T
-            ret = 66;
+            ret = 42;
             break;
         case 28: //Y
-            ret = 68;
+            ret = 44;
             break;
         case 24: //U
-            ret = 70;
+            ret = 46;
             break;
         case 18: //O
-            ret = 73;
+            ret = 49;
             break;
         case 19: //P
-            ret = 75;
+            ret = 51;
             break;
 
         //part 3: shift keys
@@ -213,21 +213,29 @@ int keyNote(int key, int* octave, int* musicKey){
     return ret;
 }
 
-int main2() {
+int main() {
 
 	int freq = 0;
 
-	const int offset = 3;
+	const int offset = 2;
 
 	int ph0 = 0;
 	int ph1 = 0;
 	int ph2 = 0;
 
 	unsigned* si0 = 0x4000;
-	unsigned* si1 = 0x00a0;
-	unsigned* si2 = 0x0080;
+	unsigned* si1 = 0x0120;
+	unsigned* si2 = 0x00b0;
+	unsigned* sikb = 0x0090;
+
+	unsigned* lights = 0x000c0000;
+	unsigned* instant_drum = 0x30;
 
 	int freq2, freq3;
+	char counter0 = 0;
+	char counter1 = 0;
+	char counter2 = 0;
+
 	BYTE rcode;
 	BOOT_MOUSE_REPORT buf;		//USB mouse report
 	BOOT_KBD_REPORT kbdbuf;
@@ -245,40 +253,16 @@ int main2() {
 	MAX3421E_init();
 	printf("initializing USB...\n");
 	USB_init();
-	while (1) {
-//		if (*(si0)) {
-//			if(chan0[ph0*3+1]!=0){
-//				freq = freq_lut[chan0[ph0*3]];
-//			}
-//			else{
-//				freq = 0;
-//			}
-//			*(si0) = (chan0[(ph0+1)*3+2]/offset << 16) | freq;
-//			ph0 ++;
-//		}
-//		if (*(si1)) {
-//			if(chan1[ph1*3+1]!=0){
-//				freq2 = freq_lut[chan1[ph1*3]];
-//			}
-//			else{
-//				freq2 = 0;
-//			}
-//			*(si1) = (chan1[(ph1+1)*3+2]/offset << 16) | freq2;
-//			ph1 ++;
-//		}
-//		if (*(si2)) {
-//			if(chan1[ph2*3+1]!=0){
-//				freq3 = freq_lut[chan2[ph2*3]];
-//			}
-//			else{
-//				freq3 = 0;
-//			}
-//			*(si2) = (chan2[(ph2+1)*3+2]/offset << 16) | freq3;
-//			ph2 ++;
-//		}
-		printf(".");
+
+
+	// Turn off all the lights
+	*lights = 0x00;
+
+	// Wait for start key
+	while(kbdbuf.keycode[0] != 0x2B) {
 		MAX3421E_Task();
 		USB_Task();
+
 		if (GetUsbTaskState() == USB_STATE_RUNNING) {
 			if (!runningdebugflag) {
 				runningdebugflag = 1;
@@ -289,20 +273,9 @@ int main2() {
 				if (rcode == hrNAK) {
 					continue; //NAK means no new data
 				} else if (rcode) {
-					printf("Rcode: ");
-					printf("%x \n", rcode);
+
 					continue;
 				}
-				printf("keycodes: ");
-				for (int i = 0; i < 6; i++) {
-					printf("%x ", kbdbuf.keycode[i]);
-				}
-				
-				// setKeycode(kbdbuf.keycode[0]);
-				// printSignedHex0(kbdbuf.keycode[0]);
-				// printSignedHex1(kbdbuf.keycode[1]);
-				// printf("\n");
-
 
                 int myNote;
 				int myFreq;
@@ -313,24 +286,137 @@ int main2() {
                 else {
                     myFreq = 0;
                 }
-                unsigned* si = 0x4000;
-                *si = myFreq;
-                
                 // write that frequency
+                *sikb = myFreq;
+
+
+                // Do instant drum
+				char do_drum = 0;
+
+				for (char i = 0; i < 6; i ++) {
+					if (kbdbuf.keycode[i] == 0x2c) {
+						do_drum = 1;
+					}
+				}
+
+				*instant_drum = do_drum;
 
 				}
 		} else if (GetUsbTaskState() == USB_STATE_ERROR) {
 			if (!errorflag) {
 				errorflag = 1;
 				clearLED(9);
-				printf("USB Error State\n");
+			}
+		} else //not in USB running state
+		{
+			if (runningdebugflag) {	//previously running, reset USB hardware just to clear out any funky state, HS/FS etc
+				runningdebugflag = 0;
+				MAX3421E_init();
+				USB_init();
+			}
+			errorflag = 0;
+			clearLED(9);
+		}
+
+	}
+	printf("Start to play music!\n");
+
+	while (1) {
+		if (*(si0)) {
+			counter0 ++;
+			if(chan0[ph0*3+1]!=0){
+				freq = freq_lut[chan0[ph0*3]];
+			}
+			else{
+				freq = 0;
+			}
+			*(si0) = (chan0[(ph0+1)*3+2]*offset << 16) | freq;
+			if (counter0 % 4 == 0) {
+				*lights = (*lights & 0xFE) | ~(*lights & 0x01);
+			}
+			ph0 ++;
+		}
+		if (*(si1)) {
+			counter1 ++;
+			if(chan1[ph1*3+1]!=0){
+				freq2 = freq_lut[chan1[ph1*3]];
+			}
+			else{
+				freq2 = 0;
+			}
+			*(si1) = (chan1[(ph1+1)*3+2]*offset << 16) | freq2;
+			if (counter1 % 8 == 0) {
+				*lights = (*lights & 0xFD) | ~(*lights & 0x02);
+			}
+			ph1 ++;
+		}
+		if (*(si2)) {
+			counter2 ++;
+			if(chan2[ph2*3+1]!=0){
+				freq3 = freq_lut[chan2[ph2*3]];
+			}
+			else{
+				freq3 = 0;
+			}
+			*(si2) = (chan2[(ph2+1)*3+2]*offset << 16) | freq3;
+			if (counter2 % 16 == 0) {
+				*lights = (*lights & 0xFB) | ~(*lights & 0x04);
+			}
+			ph2 ++;
+		}
+
+		MAX3421E_Task();
+		USB_Task();
+
+		if (GetUsbTaskState() == USB_STATE_RUNNING) {
+			if (!runningdebugflag) {
+				runningdebugflag = 1;
+				device = GetDriverandReport();
+			} else if (device == 1) {
+				//run keyboard debug polling
+				rcode = kbdPoll(&kbdbuf);
+				if (rcode == hrNAK) { continue; //NAK means no new data
+				} else if (rcode) {
+
+					continue;
+				}
+
+                int myNote;
+				int myFreq;
+                if (kbdbuf.keycode[0] != 0) {
+                    myNote = keyNote(kbdbuf.keycode[0], mainOctave, mainKey);
+					myFreq = freq_lut[myNote+(12*(*mainOctave))+(*mainKey)];
+                }
+                else {
+                    myFreq = 0;
+                }
+                // write that frequency
+                *sikb = myFreq;
+
+                // Do instant drum
+                char do_drum = 0;
+
+                for (char i = 0; i < 6; i ++) {
+                	if (kbdbuf.keycode[i] == 0x2c) {
+                		do_drum = 1;
+                	}
+                }
+
+                *instant_drum = do_drum;
+
+				}
+		} else if (GetUsbTaskState() == USB_STATE_ERROR) {
+			if (!errorflag) {
+				errorflag = 1;
+				clearLED(9);
+//				printf("USB Error State\n");
 				//print out string descriptor here
 			}
 		} else //not in USB running state
 		{
 
-			printf("USB task state: ");
-			printf("%x\n", GetUsbTaskState());
+//			printf("USB task state: ");
+//			printf("%x\n", GetUsbTaskState());
 			if (runningdebugflag) {	//previously running, reset USB hardware just to clear out any funky state, HS/FS etc
 				runningdebugflag = 0;
 				MAX3421E_init();
@@ -370,20 +456,20 @@ int main4(){
 
 	int freq = 0;
 
-	const int offset = 3;
+	const int offset = 2;
 
 	int ph0 = 0;
 	int ph1 = 0;
 	int ph2 = 0;
 
 	unsigned* si0 = 0x4000;
-	unsigned* si1 = 0x00a0;
-	unsigned* si2 = 0x0080;
+	unsigned* si1 = 0x0120;
+	unsigned* si2 = 0x00b0;
 
 	int freq2, freq3;
 
-	unsigned* drum = 0x80000;
-	*drum = 1;
+//	unsigned* drum = 0x80000;
+//	*drum = 436;
 
 	while(1) {
 		if (*(si0)) {
@@ -393,7 +479,7 @@ int main4(){
 			else{
 				freq = 0;
 			}
-			*(si0) = (chan0[(ph0+1)*3+2]/offset << 16) | freq;
+			*(si0) = (chan0[(ph0+1)*3+2]*offset << 16) | freq;
 			ph0 ++;
 		}
 		if (*(si1)) {
@@ -403,17 +489,17 @@ int main4(){
 			else{
 				freq2 = 0;
 			}
-			*(si1) = (chan1[(ph1+1)*3+2]/offset << 16) | freq2;
+			*(si1) = (chan1[(ph1+1)*3+2]*offset << 16) | freq2;
 			ph1 ++;
 		}
 		if (*(si2)) {
-			if(chan1[ph2*3+1]!=0){
+			if(chan2[ph2*3+1]!=0){
 				freq3 = freq_lut[chan2[ph2*3]];
 			}
 			else{
 				freq3 = 0;
 			}
-			*(si2) = (chan2[(ph2+1)*3+2]/offset << 16) | freq3;
+			*(si2) = (chan2[(ph2+1)*3+2]*offset << 16) | freq3;
 			ph2 ++;
 		}
 	}
@@ -432,10 +518,15 @@ int main4(){
 }
 
 
-int main() {
-	unsigned* drum = 0x80000;
-	*drum = 1000;
-	while(1) {
-//		printf("%d\n", *drum);
-	}
+//int main() {
+//	unsigned* drum = 0x80000;
+//	*drum = 1000;
+//	while(1) {
+////		printf("%d\n", *drum);
+//	}
+//}
+
+int main6() {
+	unsigned* lights = 0x000c0000;
+	*lights = 0xff;
 }
